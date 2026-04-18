@@ -33,6 +33,14 @@ AGENT_CARD = {
 }
 
 def validate_card(card: dict) -> bool:
+    """Validates whether all required fields are present in an agent's card or not.
+    
+    Args:
+        card (dict): dictionary containing an agent's fields
+
+    Returns:
+        bool: Boolean value (True/False) depending on whether the agent card has all the required fields
+    """
     
     # Required top-level fields
     required_fields = [
