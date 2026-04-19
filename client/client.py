@@ -55,10 +55,15 @@ class A2AClient:
     def extract_text(response: dict) -> str:
         """Pull the first text part from artifacts."""
         artifacts = response.get('artifacts', [])
+
         for artifact in artifacts:
             for part in artifact.get('parts', []):
                 if part.get('type') == 'text':
                     return part['text']
+                
+                if part.get('type') == 'file':
+                    file_obj = part.get('file', {})
+                    return file_obj.get('url', '')
         return ''
     
 

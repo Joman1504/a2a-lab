@@ -18,9 +18,17 @@ class TextPart(BaseModel):
     type: str = 'text'
     text: str
 
+class FileObject(BaseModel):
+    url: str
+    mimeType: str
+
+class FilePart(BaseModel):
+    type: str = "file"
+    file: FileObject
+
 class Message(BaseModel):
     role: str       # 'user' or 'agent'
-    parts: list[TextPart]
+    parts: list[TextPart, FilePart]
 
 class TaskRequest(BaseModel):
     id: str         # client-generated task ID
