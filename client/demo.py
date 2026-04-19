@@ -1,7 +1,8 @@
 # client/demo.py
 from client import A2AClient
 
-AGENT_URL = "http://127.0.0.1:8000"
+# AGENT_URL = "http://127.0.0.1:8000"
+AGENT_URL = "https://echo-a2a-agent-1095504584646.us-central1.run.app"
 
 def main():
     with A2AClient(AGENT_URL) as client:

@@ -3,8 +3,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Any, Optional
 import uuid, datetime
-from server.agent_card import AGENT_CARD
-from server.handlers import handle_task
+from agent_card import AGENT_CARD
+from handlers import handle_task
 
 app = FastAPI(title='Echo A2A Agent')
 

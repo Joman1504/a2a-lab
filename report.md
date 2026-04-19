@@ -10,7 +10,6 @@ The client could retry a task after a failure with their client-generated ID, an
 which has already processed it but failed to return it, can return it without doing work again.
 
 
-
 27. The status.state can be 'working'. Under what circumstances would a server return this state in a non-streaming call, and how should a client react?
 
 The server returning status.state = 'working' in a non-streaming call can mean that the client's 
@@ -43,3 +42,9 @@ report. Lastly, agent C will then send the results to agent A, who then sends th
 and summary to the user.
 
 
+Part 4, Task 5:
+37. In report.md Section 4, describe: (a) what the --allow-unauthenticated flag does and its security implications, (b) how Cloud Run scales to zero and what cold start latency means for A2A clients.
+
+a.) The flag --allow-unauthenticated grants the Cloud Run Invoker IAM role to the allUsers member type. This makes the service publicly accessible to any user, without authentication or identification, over HTTPS, allowing them to call our endpoints directly. What this implies for security is an increased attack surface, as there may be unauthorized usage of endpoints, which could return sensitive information, and potential abuse through spam or scraping. Untrusted traffic may additionally increase costs, as they generate billable requests.
+
+b.) When there's no traffic, Cloud Run automatically scales to zero by reducing the number of running instances to 0, eliminating idle compute cost. What cold start latency could mean for A2A clients is a noticeable delay when making a request, as Cloud Run has to boot up a new container instance, and that startup time for the container may add the latency. 
