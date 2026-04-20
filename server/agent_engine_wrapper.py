@@ -2,6 +2,7 @@
 import uuid
 from agent_card import AGENT_CARD
 from handlers import handle_task
+
 class EchoAgent:
     """Agent Engine wrapper for the Echo A2A Agent."""
 
@@ -27,7 +28,7 @@ class EchoAgent:
         import asyncio
         result_text = asyncio.run(handle_task(fake_request))
         return {
-            'id': fake_request.id,
-            'status': {'state': 'completed'},
+            'id':       fake_request.id,
+            'status':   {'state': 'completed'},
             'artifacts':[{'parts':[{'type':'text','text':result_text}]}]
         }
