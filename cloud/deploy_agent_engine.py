@@ -9,6 +9,7 @@ STAGING    = f'gs://{PROJECT_ID}-a2a-staging'
 
 vertexai.init(project=PROJECT_ID, location=REGION, staging_bucket=STAGING)
 
+# -------- Due to issues pickling, I had to move EchoAgent here -------------------------------- #
 class EchoAgent:
     """Agent Engine wrapper for the Echo A2A Agent."""
 
