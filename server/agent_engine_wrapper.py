@@ -1,6 +1,6 @@
 # server/agent_engine_wrapper.py
 import uuid
-from agent_card import AGENT_CARD
+# from agent_card import AGENT_CARD
 from handlers import handle_task
 
 class EchoAgent:

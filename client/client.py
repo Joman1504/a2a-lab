@@ -1,6 +1,8 @@
 # client/client.py
-import httpx, uuid
-from typing import Any, Optional
+import httpx
+import uuid
+from typing import Optional
+
 
 class A2AClient:
     """Minimal A2A-compliant client."""
@@ -21,7 +23,7 @@ class A2AClient:
             self._card = resp.json()
             print(f'[A2AClient] Response 200 — agent: {self._card.get("name")}, skills: {[s["id"] for s in self._card.get("skills", [])]}')
         return self._card
-    
+
     # ---- 2. Request Construction ----------------
     def _build_task(self, text: str, task_id: Optional[str] = None, session_id: Optional[str] = None) -> dict:
         """Build a conformant A2A task payload."""
@@ -33,7 +35,7 @@ class A2AClient:
                 'parts': [{'type': 'text', 'text': text}]
             }
         }
-    
+
     # ---- 3. Send & Parse --------------------
     def send_task(self, text: str, **kwargs) -> dict:
         """Send a task and return the parsed response."""
@@ -54,7 +56,7 @@ class A2AClient:
             raise RuntimeError(f"Task did not complete successfully. State: {state}")
 
         return data     # resp.json()
-    
+
     # ---- 4. Helper: extract result text ----------------
     @staticmethod
     def extract_text(response: dict) -> str:
@@ -65,19 +67,18 @@ class A2AClient:
             for part in artifact.get('parts', []):
                 if part.get('type') == 'text':
                     return part['text']
-                
+
                 if part.get('type') == 'file':
                     file_obj = part.get('file', {})
                     return file_obj.get('url', '')
         return ''
-    
 
     # ---- 5. Get Skills - required sub-task ----------------
     def get_skills(self) -> list:
         """Return list of skills from the Agent Card."""
         card = self.fetch_agent_card()
         return card.get("skills", [])
-    
+
     # ---- 6. Close HTTP ---------------- 
     def close(self):
         """Close the HTTP client."""
@@ -86,9 +87,6 @@ class A2AClient:
     # ---- 7. Context Manager ----------------
     def __enter__(self):
         return self
-    
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.close()
-
-    
-

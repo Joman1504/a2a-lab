@@ -1,7 +1,8 @@
 # cloud/deploy_agent_engine.py
 import vertexai
 from vertexai.preview import reasoning_engines
-import sys, os, uuid, asyncio
+# import sys, os, asyncio
+import uuid
 
 PROJECT_ID = 'a2a-agent-project-493700'
 REGION     = 'us-central1'

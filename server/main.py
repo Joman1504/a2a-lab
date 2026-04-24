@@ -28,7 +28,7 @@ class FilePart(BaseModel):
 
 class Message(BaseModel):
     role: str       # 'user' or 'agent'
-    parts: list[TextPart, FilePart]
+    parts: list[TextPart | FilePart]
 
 class TaskRequest(BaseModel):
     id: str         # client-generated task ID
