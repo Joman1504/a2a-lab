@@ -21,8 +21,8 @@ AGENT_CARD = {
             "outputModes":  ["text/plain"]
         },
         {
-            "id":           "summarize",
-            "name":         "Summarize",
+            "id":           "summarise",
+            "name":         "Summarise",
             "description":  "Returns a concise summary of the provided text.",
             "inputModes":   ["text/plain"],
             "outputModes":  ["text/plain"]
